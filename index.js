@@ -80,16 +80,7 @@ const transition = (grid, cellId) => {
 
 };
 
-
-const play = () => {
-
-    let grid = [
-        0,0,0,0,0,
-        0,0,0,0,0,
-        0,1,1,1,0,
-        0,0,0,0,0,
-        0,0,0,0,0
-    ];
+const play = (grid) => {
 
     let newGrid = [];
 
@@ -97,17 +88,11 @@ const play = () => {
         newGrid.push(transition(grid, i)? 1 : 0);
     });
 
-    // console.log(newGrid);
-    // [ 0, 0, 0, 0, 0,
-    //  0, 0, 1, 0, 0,
-    //  0, 0, 1, 0, 0,
-    //  0, 0, 1, 0, 0,
-    //  0, 0, 0, 0, 0 ]
+    return newGrid;
 
 }
 
-play();
-
 module.exports = {
-    transition
+    transition,
+    play
 }
