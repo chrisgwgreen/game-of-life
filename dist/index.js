@@ -60,7 +60,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "43c183abab37437b0fc3"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "50d60be5101a9dd0091a"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -3615,6 +3615,43 @@ module.exports = DOMLazyTree;
 /* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
+/* WEBPACK VAR INJECTION */(function(process) {/**
+ * Copyright 2013-present, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ */
+
+if (process.env.NODE_ENV !== 'production') {
+  var REACT_ELEMENT_TYPE = (typeof Symbol === 'function' &&
+    Symbol.for &&
+    Symbol.for('react.element')) ||
+    0xeac7;
+
+  var isValidElement = function(object) {
+    return typeof object === 'object' &&
+      object !== null &&
+      object.$$typeof === REACT_ELEMENT_TYPE;
+  };
+
+  // By explicitly using `prop-types` you are opting into new development behavior.
+  // http://fb.me/prop-types-in-prod
+  var throwOnDirectAccess = true;
+  module.exports = __webpack_require__(62)(isValidElement, throwOnDirectAccess);
+} else {
+  // By explicitly using `prop-types` you are opting into new production behavior.
+  // http://fb.me/prop-types-in-prod
+  module.exports = __webpack_require__(201)();
+}
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 22 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
  * Copyright 2013-present, Facebook, Inc.
@@ -3628,7 +3665,7 @@ module.exports = DOMLazyTree;
 
 
 
-var EventPluginHub = __webpack_require__(22);
+var EventPluginHub = __webpack_require__(23);
 var EventPluginUtils = __webpack_require__(36);
 
 var accumulateInto = __webpack_require__(64);
@@ -3752,7 +3789,7 @@ module.exports = EventPropagators;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4032,7 +4069,7 @@ module.exports = EventPluginHub;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4096,7 +4133,7 @@ SyntheticEvent.augmentClass(SyntheticUIEvent, UIEventInterface);
 module.exports = SyntheticUIEvent;
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4145,43 +4182,6 @@ var ReactInstanceMap = {
 };
 
 module.exports = ReactInstanceMap;
-
-/***/ }),
-/* 25 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- */
-
-if (process.env.NODE_ENV !== 'production') {
-  var REACT_ELEMENT_TYPE = (typeof Symbol === 'function' &&
-    Symbol.for &&
-    Symbol.for('react.element')) ||
-    0xeac7;
-
-  var isValidElement = function(object) {
-    return typeof object === 'object' &&
-      object !== null &&
-      object.$$typeof === REACT_ELEMENT_TYPE;
-  };
-
-  // By explicitly using `prop-types` you are opting into new development behavior.
-  // http://fb.me/prop-types-in-prod
-  var throwOnDirectAccess = true;
-  module.exports = __webpack_require__(62)(isValidElement, throwOnDirectAccess);
-} else {
-  // By explicitly using `prop-types` you are opting into new production behavior.
-  // http://fb.me/prop-types-in-prod
-  module.exports = __webpack_require__(201)();
-}
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
 /* 26 */
@@ -4751,7 +4751,7 @@ module.exports = TransactionImpl;
 
 
 
-var SyntheticUIEvent = __webpack_require__(23);
+var SyntheticUIEvent = __webpack_require__(24);
 var ViewportMetrics = __webpack_require__(71);
 
 var getEventModifierState = __webpack_require__(40);
@@ -6621,7 +6621,7 @@ module.exports = KeyEscapeUtils;
 var _prodInvariant = __webpack_require__(3);
 
 var ReactCurrentOwner = __webpack_require__(10);
-var ReactInstanceMap = __webpack_require__(24);
+var ReactInstanceMap = __webpack_require__(25);
 var ReactInstrumentation = __webpack_require__(9);
 var ReactUpdates = __webpack_require__(11);
 
@@ -7415,10 +7415,10 @@ function isPlainObject(value) {
 /***/ (function(module, exports, __webpack_require__) {
 
 const combineReducers = __webpack_require__(53).combineReducers;
-const todos = __webpack_require__(233);
+const grid = __webpack_require__(234);
 
 const todoApp = combineReducers({
-    todos
+    grid
 });
 
 module.exports = todoApp;
@@ -10552,7 +10552,7 @@ var ReactDOMComponentTree = __webpack_require__(5);
 var ReactDOMContainerInfo = __webpack_require__(190);
 var ReactDOMFeatureFlags = __webpack_require__(191);
 var ReactFeatureFlags = __webpack_require__(68);
-var ReactInstanceMap = __webpack_require__(24);
+var ReactInstanceMap = __webpack_require__(25);
 var ReactInstrumentation = __webpack_require__(9);
 var ReactMarkupChecksum = __webpack_require__(192);
 var ReactReconciler = __webpack_require__(19);
@@ -11129,7 +11129,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return subscriptionShape; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return storeShape; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_prop_types__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_prop_types__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_prop_types__);
 
 
@@ -11901,7 +11901,7 @@ function verifyPlainObject(value, displayName, methodName) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(99);
-module.exports = __webpack_require__(234);
+module.exports = __webpack_require__(235);
 
 
 /***/ }),
@@ -14183,7 +14183,7 @@ module.exports = ARIADOMPropertyConfig;
 
 
 
-var EventPropagators = __webpack_require__(21);
+var EventPropagators = __webpack_require__(22);
 var ExecutionEnvironment = __webpack_require__(6);
 var FallbackCompositionState = __webpack_require__(119);
 var SyntheticCompositionEvent = __webpack_require__(120);
@@ -14755,8 +14755,8 @@ module.exports = SyntheticInputEvent;
 
 
 
-var EventPluginHub = __webpack_require__(22);
-var EventPropagators = __webpack_require__(21);
+var EventPluginHub = __webpack_require__(23);
+var EventPropagators = __webpack_require__(22);
 var ExecutionEnvironment = __webpack_require__(6);
 var ReactDOMComponentTree = __webpack_require__(5);
 var ReactUpdates = __webpack_require__(11);
@@ -15812,7 +15812,7 @@ module.exports = DefaultEventPluginOrder;
 
 
 
-var EventPropagators = __webpack_require__(21);
+var EventPropagators = __webpack_require__(22);
 var ReactDOMComponentTree = __webpack_require__(5);
 var SyntheticMouseEvent = __webpack_require__(30);
 
@@ -16614,7 +16614,7 @@ var DOMLazyTree = __webpack_require__(20);
 var DOMNamespaces = __webpack_require__(42);
 var DOMProperty = __webpack_require__(13);
 var DOMPropertyOperations = __webpack_require__(75);
-var EventPluginHub = __webpack_require__(22);
+var EventPluginHub = __webpack_require__(23);
 var EventPluginRegistry = __webpack_require__(28);
 var ReactBrowserEventEmitter = __webpack_require__(33);
 var ReactDOMComponentFlags = __webpack_require__(63);
@@ -18184,7 +18184,7 @@ module.exports = quoteAttributeValueForBrowser;
 
 
 
-var EventPluginHub = __webpack_require__(22);
+var EventPluginHub = __webpack_require__(23);
 
 function runEventQueueInBatch(events) {
   EventPluginHub.enqueueEvents(events);
@@ -18917,7 +18917,7 @@ module.exports = ReactDOMTextarea;
 var _prodInvariant = __webpack_require__(3);
 
 var ReactComponentEnvironment = __webpack_require__(45);
-var ReactInstanceMap = __webpack_require__(24);
+var ReactInstanceMap = __webpack_require__(25);
 var ReactInstrumentation = __webpack_require__(9);
 
 var ReactCurrentOwner = __webpack_require__(10);
@@ -19532,7 +19532,7 @@ var React = __webpack_require__(17);
 var ReactComponentEnvironment = __webpack_require__(45);
 var ReactCurrentOwner = __webpack_require__(10);
 var ReactErrorUtils = __webpack_require__(37);
-var ReactInstanceMap = __webpack_require__(24);
+var ReactInstanceMap = __webpack_require__(25);
 var ReactInstrumentation = __webpack_require__(9);
 var ReactNodeTypes = __webpack_require__(79);
 var ReactReconciler = __webpack_require__(19);
@@ -21628,7 +21628,7 @@ module.exports = getUnboundedScrollPosition;
 
 
 var DOMProperty = __webpack_require__(13);
-var EventPluginHub = __webpack_require__(22);
+var EventPluginHub = __webpack_require__(23);
 var EventPluginUtils = __webpack_require__(36);
 var ReactComponentEnvironment = __webpack_require__(45);
 var ReactEmptyComponent = __webpack_require__(80);
@@ -22558,7 +22558,7 @@ module.exports = SVGDOMPropertyConfig;
 
 
 
-var EventPropagators = __webpack_require__(21);
+var EventPropagators = __webpack_require__(22);
 var ExecutionEnvironment = __webpack_require__(6);
 var ReactDOMComponentTree = __webpack_require__(5);
 var ReactInputSelection = __webpack_require__(84);
@@ -22755,7 +22755,7 @@ module.exports = SelectEventPlugin;
 var _prodInvariant = __webpack_require__(3);
 
 var EventListener = __webpack_require__(83);
-var EventPropagators = __webpack_require__(21);
+var EventPropagators = __webpack_require__(22);
 var ReactDOMComponentTree = __webpack_require__(5);
 var SyntheticAnimationEvent = __webpack_require__(181);
 var SyntheticClipboardEvent = __webpack_require__(182);
@@ -22766,7 +22766,7 @@ var SyntheticMouseEvent = __webpack_require__(30);
 var SyntheticDragEvent = __webpack_require__(186);
 var SyntheticTouchEvent = __webpack_require__(187);
 var SyntheticTransitionEvent = __webpack_require__(188);
-var SyntheticUIEvent = __webpack_require__(23);
+var SyntheticUIEvent = __webpack_require__(24);
 var SyntheticWheelEvent = __webpack_require__(189);
 
 var emptyFunction = __webpack_require__(8);
@@ -23070,7 +23070,7 @@ module.exports = SyntheticClipboardEvent;
 
 
 
-var SyntheticUIEvent = __webpack_require__(23);
+var SyntheticUIEvent = __webpack_require__(24);
 
 /**
  * @interface FocusEvent
@@ -23111,7 +23111,7 @@ module.exports = SyntheticFocusEvent;
 
 
 
-var SyntheticUIEvent = __webpack_require__(23);
+var SyntheticUIEvent = __webpack_require__(24);
 
 var getEventCharCode = __webpack_require__(51);
 var getEventKey = __webpack_require__(185);
@@ -23358,7 +23358,7 @@ module.exports = SyntheticDragEvent;
 
 
 
-var SyntheticUIEvent = __webpack_require__(23);
+var SyntheticUIEvent = __webpack_require__(24);
 
 var getEventModifierState = __webpack_require__(40);
 
@@ -23698,7 +23698,7 @@ var _prodInvariant = __webpack_require__(3);
 
 var ReactCurrentOwner = __webpack_require__(10);
 var ReactDOMComponentTree = __webpack_require__(5);
-var ReactInstanceMap = __webpack_require__(24);
+var ReactInstanceMap = __webpack_require__(25);
 
 var getHostComponentFromComposite = __webpack_require__(87);
 var invariant = __webpack_require__(1);
@@ -24035,16 +24035,17 @@ module.exports = ReactDOMInvalidARIAHook;
 /***/ (function(module, exports, __webpack_require__) {
 
 const React = __webpack_require__(14);
-const PropTypes = __webpack_require__(25);
+const PropTypes = __webpack_require__(21);
+const GameOfLife = __webpack_require__(237);
 
 // Components...
 const Title = __webpack_require__(202);
-const Grid = __webpack_require__(204);
-const Controls = __webpack_require__(239);
+const Grid = __webpack_require__(203);
+const Controls = __webpack_require__(204);
 
 // Redux...
 const connect = __webpack_require__(88).connect;
-const todoActions = __webpack_require__(231);
+const gridActions = __webpack_require__(236);
 
 class App extends React.Component {
 
@@ -24052,56 +24053,77 @@ class App extends React.Component {
         super();
 
         this.toggleCell = this.toggleCell.bind(this);
-        // this.toggleTodo = this.toggleTodo.bind(this);
+        this.setGridSize = this.setGridSize.bind(this);
+        this.play = this.play.bind(this);
+        this.tick = this.tick.bind(this);
+        this.stop = this.stop.bind(this);
+        this.clearGrid = this.clearGrid.bind(this);
 
         this.state = {
-            todoIndex: 0
+            todoIndex: 0,
+            isPlaying: false
         };
     }
-    componentDidMount() {}
 
-    shouldComponentUpdate(nextState, nextProps) {
-        return true;
+    setGridSize(size) {
+        this.props.dispatch(gridActions.setGridSize(parseInt(size)));
     }
 
-    // addTodo() {
-    //     this.props.dispatch(todoActions.addTodo(this.textInput.value, this.state.todoIndex));
-    //
-    //     this.setState({
-    //         todoIndex: this.state.todoIndex + 1
-    //     });
-    // }
-    //
-    // toggleTodo(id) {
-    //     this.props.dispatch(todoActions.toggleTodo(id));
-    // }
-
-    onGridSizeChange() {}
     toggleCell(id) {
+        this.props.dispatch(gridActions.toggleCell(id));
+    }
 
-        console.log(id);
+    play() {
+        this.setState({
+            isPlaying: true
+        }, () => {
+            this.tick();
+        });
+    }
+
+    tick() {
+        this.props.dispatch(gridActions.setGrid(GameOfLife.tick(this.props.grid)));
+
+        if (this.state.isPlaying) {
+            setTimeout(this.tick, 400);
+        }
+    }
+
+    stop() {
+        this.setState({
+            isPlaying: false
+        });
+    }
+
+    clearGrid() {
+        this.props.dispatch(gridActions.clearGrid());
     }
 
     render() {
         return React.createElement(
             'div',
             { className: 'todo-list' },
-            React.createElement(Title, { title: 'Todo List' }),
-            React.createElement(Controls, { onGridSizeChange: this.onGridSizeChange }),
-            React.createElement(Grid, { gridSize: 8, grid: [0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0], onGridClick: this.toggleCell })
+            React.createElement(Title, { title: 'Game of Life' }),
+            React.createElement(Grid, { gridSize: this.props.gridSize, grid: this.props.grid, onGridClick: this.toggleCell }),
+            React.createElement(Controls, { onGridSizeChange: this.setGridSize, play: this.play, stop: this.stop, clearGrid: this.clearGrid, isPlaying: this.state.isPlaying })
         );
     }
 }
 
 App.propTypes = {
+    grid: PropTypes.array,
     todos: PropTypes.array,
+    gridSize: PropTypes.number,
     dispatch: PropTypes.func
 };
 
 // Redux mapping...
 const mapStateToProps = (state, ownProps) => {
     return {
-        todos: state.todos
+        todos: state.todos,
+        gridObj: state.grid,
+        grid: state.grid.grid,
+        gridSize: state.grid.gridSize
     };
 };
 
@@ -24186,13 +24208,9 @@ module.exports = function() {
 /***/ (function(module, exports, __webpack_require__) {
 
 const React = __webpack_require__(14);
-const PropTypes = __webpack_require__(25);
+const PropTypes = __webpack_require__(21);
 
 class Title extends React.Component {
-
-    componentDidMount() {
-        console.log('Title Mounted');
-    }
     render() {
         return React.createElement(
             'h1',
@@ -24209,13 +24227,12 @@ Title.propTypes = {
 module.exports = Title;
 
 /***/ }),
-/* 203 */,
-/* 204 */
+/* 203 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // Grid
 const React = __webpack_require__(14);
-const PropTypes = __webpack_require__(25);
+const PropTypes = __webpack_require__(21);
 
 class Grid extends React.Component {
 
@@ -24223,6 +24240,7 @@ class Grid extends React.Component {
         super(props);
 
         this.click = this.click.bind(this);
+        this.updateGrid = this.updateGrid.bind(this);
 
         this.state = {
             canvasWidth: 500
@@ -24231,56 +24249,56 @@ class Grid extends React.Component {
 
     componentDidMount() {
 
-        const ctx = this.canvas.getContext('2d');
+        this.ctx = this.canvas.getContext('2d');
+        this.ctx.canvas.width = this.state.canvasWidth;
+        this.ctx.canvas.height = this.state.canvasWidth;
+        this.updateGrid();
+    }
 
-        ctx.canvas.width = this.state.canvasWidth;
-        ctx.canvas.height = this.state.canvasWidth;
+    click(e) {
 
+        const bounding = this.canvas.getBoundingClientRect();
+        const cellSize = this.state.canvasWidth / this.props.gridSize;
+        const xIndex = Math.floor((e.clientX - bounding.left) / cellSize);
+        const yIndex = Math.floor((e.clientY - bounding.top) / cellSize);
+        const gridIndex = xIndex + yIndex * this.props.gridSize;
+
+        this.props.onGridClick(gridIndex);
+    }
+
+    componentDidUpdate() {
+        this.updateGrid();
+    }
+
+    updateGrid() {
         let canvasWidth = this.state.canvasWidth;
         let gridSize = this.props.gridSize;
         let cellSize = canvasWidth / gridSize;
 
         for (let i = 0; i < gridSize; i += 1) {
             // Rows...
-
             for (let j = 0; j < gridSize; j += 1) {
                 // Coloumns...
+                this.ctx.beginPath();
+                this.ctx.rect(j * cellSize, i * cellSize, cellSize, cellSize);
+                this.ctx.fillStyle = '#606c76';
+                this.ctx.fill();
 
-                ctx.beginPath();
-                ctx.rect(j * cellSize, i * cellSize, cellSize, cellSize);
-                ctx.fillStyle = '#606c76';
-                ctx.fill();
-
-                ctx.beginPath();
-                ctx.rect(j * cellSize + 2, i * cellSize + 2, cellSize - 4, cellSize - 4);
-                ctx.fillStyle = this.props.grid[i * gridSize + j] === 1 ? '#2b2b2b' : 'white'; //
-                ctx.fill();
+                this.ctx.beginPath();
+                this.ctx.rect(j * cellSize + 2, i * cellSize + 2, cellSize - 4, cellSize - 4);
+                this.ctx.fillStyle = this.props.grid[i * gridSize + j] === 1 ? '#2b2b2b' : 'white'; //
+                this.ctx.fill();
             }
         }
     }
 
-    click(e) {
-
-        const bounding = this.canvas.getBoundingClientRect();
-        let cellSize = this.state.canvasWidth / this.props.gridSize;
-
-        const xIndex = Math.floor((e.clientX - bounding.left) / cellSize);
-        const yIndex = Math.floor((e.clientY - bounding.top) / cellSize);
-
-        const gridIndex = xIndex + yIndex * this.props.gridSize;
-
-        this.props.onGridClick(gridIndex);
-    }
-
     render() {
-
         return React.createElement(
             'div',
             null,
             React.createElement('canvas', { ref: canvas => this.canvas = canvas, id: 'grid', onClick: this.click })
         );
     }
-
 }
 
 Grid.propTypes = {
@@ -24292,6 +24310,91 @@ Grid.propTypes = {
 module.exports = Grid;
 
 /***/ }),
+/* 204 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// controls
+const React = __webpack_require__(14);
+const PropTypes = __webpack_require__(21);
+
+class Controls extends React.Component {
+
+    constructor(props) {
+
+        super(props);
+
+        this.play = this.play.bind(this);
+        this.stop = this.stop.bind(this);
+        this.clear = this.clear.bind(this);
+        this.gridChange = this.gridChange.bind(this);
+    }
+
+    play() {
+        this.props.play();
+    }
+
+    stop() {
+        this.props.stop();
+    }
+
+    clear() {
+        this.props.clearGrid();
+    }
+
+    gridChange(e) {
+        this.props.onGridSizeChange(e.target.value);
+    }
+
+    render() {
+
+        const listItems = [];
+
+        for (let i = 4; i <= 20; i += 1) {
+            listItems.push(React.createElement(
+                'option',
+                { key: i.toString(), value: i },
+                i.toString()
+            ));
+        }
+
+        return React.createElement(
+            'div',
+            null,
+            React.createElement(
+                'select',
+                { onChange: this.gridChange },
+                listItems
+            ),
+            React.createElement(
+                'button',
+                { className: 'todo-list--add', onClick: this.play },
+                'Play'
+            ),
+            React.createElement(
+                'button',
+                { className: 'todo-list--add', onClick: this.stop },
+                'Stop'
+            ),
+            React.createElement(
+                'button',
+                { className: 'todo-list--add', onClick: this.clear },
+                'Clear'
+            )
+        );
+    }
+
+}
+
+Controls.propTypes = {
+    onGridSizeChange: PropTypes.func,
+    clearGrid: PropTypes.func,
+    play: PropTypes.func,
+    stop: PropTypes.func
+};
+
+module.exports = Controls;
+
+/***/ }),
 /* 205 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -24299,7 +24402,7 @@ module.exports = Grid;
 /* WEBPACK VAR INJECTION */(function(process) {/* harmony export (immutable) */ __webpack_exports__["a"] = createProvider;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_PropTypes__ = __webpack_require__(89);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_warning__ = __webpack_require__(52);
@@ -25565,30 +25668,7 @@ function verifySubselectors(mapStateToProps, mapDispatchToProps, mergeProps, dis
 }
 
 /***/ }),
-/* 231 */
-/***/ (function(module, exports) {
-
-const addTodo = (text, id) => {
-    return {
-        type: 'ADD_TODO',
-        text,
-        id
-    };
-};
-
-const toggleTodo = id => {
-    return {
-        type: 'TOGGLE_TODO',
-        id
-    };
-};
-
-module.exports = {
-    addTodo,
-    toggleTodo
-};
-
-/***/ }),
+/* 231 */,
 /* 232 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -25615,51 +25695,56 @@ const configureStore = initialState => {
 module.exports = configureStore;
 
 /***/ }),
-/* 233 */
+/* 233 */,
+/* 234 */
 /***/ (function(module, exports) {
 
-const todo = (state, action) => {
-
-    switch (action.type) {
-
-        case 'ADD_TODO':
-
-            return {
-                id: action.id,
-                text: action.text,
-                completed: false
-            };
-
-            break;
-
-        case 'TOGGLE_TODO':
-
-            if (state.id !== action.id) {
-                return state;
-            }
-
-            return {
-                id: state.id,
-                text: state.text,
-                completed: !state.completed
-            };
-
-            break;
-
-    }
+const initialState = {
+    gridSize: 4,
+    grid: [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0]
 };
 
-const todos = (state = [], action) => {
+const grid = (state = initialState, action) => {
+
+    let newState;
 
     switch (action.type) {
 
-        case 'ADD_TODO':
-            return [...state, todo(undefined, action)];
+        case 'SET_GRID_SIZE':
+
+            newState = {
+                gridSize: action.size,
+                grid: Array(action.size * action.size).fill(0)
+            };
+
+            return newState;
+
             break;
 
-        case 'TOGGLE_TODO':
+        case 'CLEAR_GRID':
 
-            return state.map(todoItem => todo(todoItem, action));
+            return Object.assign({}, state, {
+                grid: Array(state.gridSize * state.gridSize).fill(0)
+            });
+
+            break;
+
+        case 'SET_GRID':
+
+            return Object.assign({}, state, {
+                grid: action.grid
+            });
+
+            break;
+
+        case 'TOGGLE_CELL':
+
+            newState = Object.assign({}, state);
+            newState.grid[action.id] = state.grid[action.id] === 1 ? 0 : 1;;
+
+            return newState;
+
+            break;
 
         default:
             return state;
@@ -25667,83 +25752,158 @@ const todos = (state = [], action) => {
     }
 };
 
-module.exports = todos;
+module.exports = grid;
 
 /***/ }),
-/* 234 */
+/* 235 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 235 */,
-/* 236 */,
-/* 237 */,
-/* 238 */,
-/* 239 */
-/***/ (function(module, exports, __webpack_require__) {
+/* 236 */
+/***/ (function(module, exports) {
 
-// controls
-const React = __webpack_require__(14);
-const PropTypes = __webpack_require__(25);
+const setGridSize = size => {
+    return {
+        type: 'SET_GRID_SIZE',
+        size
+    };
+};
 
-class Controls extends React.Component {
+const clearGrid = () => {
+    return {
+        type: 'CLEAR_GRID'
+    };
+};
 
-    constructor(props) {
-        super(props);
+const setGrid = grid => {
+    return {
+        type: 'SET_GRID',
+        grid
+    };
+};
+
+const toggleCell = id => {
+    return {
+        type: 'TOGGLE_CELL',
+        id
+    };
+};
+
+module.exports = {
+    setGridSize,
+    clearGrid,
+    setGrid,
+    toggleCell
+};
+
+/***/ }),
+/* 237 */
+/***/ (function(module, exports) {
+
+const transition = (grid, cellId) => {
+
+    const gridLength = grid.length;
+    const rcSize = Math.sqrt(gridLength);
+    const rowIndex = cellId % rcSize;
+    const isCellLive = grid[cellId];
+
+    let neighbours = [];
+
+    // Sanity checks...
+    if (cellId >= gridLength) {
+        throw new Error(`CellId must be less than ${gridLength - 1}`);
     }
 
-    play() {}
+    if (!Number.isInteger(rcSize)) {
+        throw new Error('Grid must be square.');
+    }
 
-    stop() {}
+    // Get neighbours..
+    if (cellId - rcSize >= 0) {
+        // Directly Above...
+        neighbours.push(grid[cellId - rcSize] === 1);
+    }
 
-    clear() {}
+    if (cellId + rcSize < gridLength) {
+        // Directly Below...
+        neighbours.push(grid[cellId + rcSize] === 1);
+    }
 
-    render() {
+    if (rowIndex - 1 >= 0) {
+        // Left
 
-        const listItems = [];
+        neighbours.push(grid[cellId - 1] === 1);
 
-        for (let i = 4; i <= 20; i += 1) {
-            listItems.push(React.createElement(
-                'option',
-                { key: i.toString(), value: 'volvo' },
-                i.toString()
-            ));
+        if (cellId - 1 - rcSize > 0) {
+            // Above Left...
+            neighbours.push(grid[cellId - 1 - rcSize] === 1);
         }
 
-        return React.createElement(
-            'div',
-            null,
-            React.createElement(
-                'select',
-                null,
-                listItems
-            ),
-            React.createElement(
-                'button',
-                { className: 'todo-list--add', onClick: this.play },
-                'Play'
-            ),
-            React.createElement(
-                'button',
-                { className: 'todo-list--add', onClick: this.stop },
-                'Stop'
-            ),
-            React.createElement(
-                'button',
-                { className: 'todo-list--add', onClick: this.clear },
-                'Clear'
-            )
-        );
+        if (cellId - 1 + rcSize < gridLength) {
+            // Below Left...
+            neighbours.push(grid[cellId - 1 + rcSize] === 1);
+        }
     }
 
-}
+    if (rowIndex + 1 <= rcSize - 1) {
+        // Right
 
-// Link.propTypes = {
-//     page: PropTypes.string
-// };
+        neighbours.push(grid[cellId + 1] === 1);
 
-module.exports = Controls;
+        if (cellId + 1 - rcSize >= 0) {
+            // Above Right...
+            neighbours.push(grid[cellId + 1 - rcSize] === 1);
+        }
+
+        if (cellId + 1 + rcSize < gridLength) {
+            // Below Right...
+            neighbours.push(grid[cellId + 1 + rcSize] === 1);
+        }
+    }
+
+    // Apply rules...
+    let liveNeighbours = neighbours.filter(neighbour => neighbour === true).length;
+
+    // Any live cell with fewer than two live neighbours dies
+    if (isCellLive && liveNeighbours < 2) {
+        return false;
+    }
+
+    // Any live cell with two or three live neighbours lives on to the next generation
+    if (isCellLive && (liveNeighbours === 2 || liveNeighbours === 3)) {
+        return true;
+    }
+
+    // Any live cell with more than three live neighbours dies...
+    if (isCellLive && liveNeighbours > 3) {
+        return false;
+    }
+
+    // Any dead cell with exactly three live neighbours becomes a live cell
+    if (!isCellLive && liveNeighbours === 3) {
+        return true;
+    }
+
+    return isCellLive; // Returns current state of cell given no rule for scenario... (i.e. no change...)
+};
+
+const tick = grid => {
+
+    let newGrid = [];
+
+    grid.forEach((cell, i) => {
+        newGrid.push(transition(grid, i) ? 1 : 0);
+    });
+
+    return newGrid;
+};
+
+module.exports = {
+    transition,
+    tick
+};
 
 /***/ })
 /******/ ]);

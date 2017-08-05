@@ -1,5 +1,6 @@
 const React = require('react');
 const PropTypes = require('prop-types');
+const GameOfLife = require('../../engine');
 
 // Components...
 const Title = require('../../component/title');
@@ -8,7 +9,7 @@ const Controls = require('../../component/controls');
 
 // Redux...
 const connect = require('react-redux').connect;
-const todoActions = require('../../redux-actions/todo');
+const gridActions = require('../../redux-actions/grid');
 
 class App extends React.Component {
 
@@ -16,61 +17,77 @@ class App extends React.Component {
         super();
 
         this.toggleCell = this.toggleCell.bind(this);
-        // this.toggleTodo = this.toggleTodo.bind(this);
+        this.setGridSize = this.setGridSize.bind(this);
+        this.play = this.play.bind(this);
+        this.tick = this.tick.bind(this);
+        this.stop = this.stop.bind(this);
+        this.clearGrid = this.clearGrid.bind(this);
 
         this.state = {
-            todoIndex: 0
+            todoIndex: 0,
+            isPlaying: false
         };
     }
-    componentDidMount() {
 
+    setGridSize(size) {
+        this.props.dispatch(gridActions.setGridSize(parseInt(size)));
     }
 
-    shouldComponentUpdate(nextState, nextProps) {
-        return true;
-    }
-
-    // addTodo() {
-    //     this.props.dispatch(todoActions.addTodo(this.textInput.value, this.state.todoIndex));
-    //
-    //     this.setState({
-    //         todoIndex: this.state.todoIndex + 1
-    //     });
-    // }
-    //
-    // toggleTodo(id) {
-    //     this.props.dispatch(todoActions.toggleTodo(id));
-    // }
-
-    onGridSizeChange() {
-
-    }
     toggleCell(id) {
+        this.props.dispatch(gridActions.toggleCell(id));
+    }
 
-        console.log(id);
+    play() {
+        this.setState({
+            isPlaying: true
+        }, ()=> {
+            this.tick();
+        });
+    }
 
+    tick() {
+        this.props.dispatch(gridActions.setGrid(GameOfLife.tick(this.props.grid)));
+
+        if (this.state.isPlaying) {
+            setTimeout(this.tick, 400);
+        }
+    }
+
+    stop() {
+        this.setState({
+            isPlaying: false
+        });
+    }
+
+    clearGrid() {
+        this.props.dispatch(gridActions.clearGrid());
     }
 
     render() {
         return (
             <div className='todo-list'>
-                <Title title={'Todo List'} />
-                <Controls onGridSizeChange={this.onGridSizeChange}/>
-                <Grid gridSize={8} grid={[0,0,1,0,0,1,0,0,0,1,0,0]} onGridClick={this.toggleCell}/>
+                <Title title={'Game of Life'} />
+                <Grid gridSize={this.props.gridSize} grid={this.props.grid} onGridClick={this.toggleCell}/>
+                <Controls onGridSizeChange={this.setGridSize} play={this.play} stop={this.stop} clearGrid={this.clearGrid} isPlaying={this.state.isPlaying}/>
             </div>
         );
     }
 }
 
 App.propTypes = {
+    grid: PropTypes.array,
     todos: PropTypes.array,
+    gridSize: PropTypes.number,
     dispatch: PropTypes.func
 };
 
 // Redux mapping...
 const mapStateToProps = (state, ownProps) => {
     return {
-        todos: state.todos
+        todos: state.todos,
+        gridObj: state.grid,
+        grid: state.grid.grid,
+        gridSize: state.grid.gridSize
     };
 };
 

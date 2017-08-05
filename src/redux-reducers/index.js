@@ -1,8 +1,8 @@
 const combineReducers = require('redux').combineReducers;
-const todos = require('./todos');
+const grid = require('./grid');
 
 const todoApp = combineReducers({
-    todos
+    grid
 });
 
 module.exports = todoApp;

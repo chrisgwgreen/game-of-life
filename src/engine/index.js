@@ -80,7 +80,7 @@ const transition = (grid, cellId) => {
 
 };
 
-const play = (grid) => {
+const tick = (grid) => {
 
     let newGrid = [];
 
@@ -90,9 +90,9 @@ const play = (grid) => {
 
     return newGrid;
 
-}
+};
 
 module.exports = {
     transition,
-    play
-}
+    tick
+};
