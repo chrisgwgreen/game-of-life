@@ -4,13 +4,27 @@
 // Components
 @import "component/title/title.scss";
 @import "component/grid/grid.scss";
+@import "component/controls/controls.scss";
+
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
 
 body {
-  padding: 50px;
+  margin:0;
+  padding: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 
 }
 
 a {
   color: #00B7FF;
+}
+
+#app {
+    max-width: 600px;
+    min-width: 365px;
+    margin: 0 auto;
 }

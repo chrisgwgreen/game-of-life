@@ -11,16 +11,23 @@ class Grid extends React.Component {
         this.updateGrid = this.updateGrid.bind(this);
 
         this.state = {
-            canvasWidth: 500
+            canvasWidth: 1000
         };
     }
 
     componentDidMount() {
 
+
+        const canvasWidth = this.canvas.getBoundingClientRect().width - 2;
+
         this.ctx = this.canvas.getContext('2d');
-        this.ctx.canvas.width  = this.state.canvasWidth;
-        this.ctx.canvas.height = this.state.canvasWidth;
+        this.ctx.canvas.width  = canvasWidth;
+        this.ctx.canvas.height = canvasWidth;
         this.updateGrid();
+
+        this.setState({
+            canvasWidth
+        });
 
     }
 
@@ -48,7 +55,7 @@ class Grid extends React.Component {
             for(let j = 0; j < gridSize; j += 1) { // Coloumns...
                 this.ctx.beginPath();
                 this.ctx.rect((j * cellSize), (i * cellSize), cellSize, cellSize);
-                this.ctx.fillStyle = '#606c76';
+                this.ctx.fillStyle = '#dddddd';
                 this.ctx.fill();
 
                 this.ctx.beginPath();
@@ -61,8 +68,8 @@ class Grid extends React.Component {
 
     render() {
         return (
-            <div>
-                <canvas ref={canvas => this.canvas = canvas} id="grid" onClick={this.click}/>
+            <div className="grid">
+                <canvas className="grid--canvas" ref={canvas => this.canvas = canvas} onClick={this.click}/>
             </div>
         );
     }

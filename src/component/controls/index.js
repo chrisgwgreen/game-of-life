@@ -5,14 +5,12 @@ const PropTypes = require('prop-types');
 class Controls extends React.Component {
 
     constructor(props) {
-
         super(props);
 
         this.play = this.play.bind(this);
         this.stop = this.stop.bind(this);
         this.clear = this.clear.bind(this);
         this.gridChange = this.gridChange.bind(this);
-
     }
 
     play() {
@@ -35,18 +33,18 @@ class Controls extends React.Component {
 
         const listItems = [];
 
-        for (let i = 4; i <= 20; i += 1) {
+        for (let i = 4; i <= 50; i += 1) {
             listItems.push(<option key={i.toString()} value={i}>{i.toString()}</option>);
         }
 
         return (
-            <div>
-                <select onChange={this.gridChange}>
+            <div className="controls">
+                <select className="controls--select" onChange={this.gridChange}>
                     {listItems}
                 </select>
-                <button className='todo-list--add' onClick={this.play}>Play</button>
-                <button className='todo-list--add' onClick={this.stop}>Stop</button>
-                <button className='todo-list--add' onClick={this.clear}>Clear</button>
+                <button className='controls--button' onClick={this.play} disabled={this.props.isPlaying}>Play</button>
+                <button className='controls--button' onClick={this.stop} disabled={!this.props.isPlaying}>Stop</button>
+                <button className='controls--button' onClick={this.clear} disabled={this.props.isPlaying}>Clear</button>
             </div>
         );
     }
@@ -57,7 +55,8 @@ Controls.propTypes = {
     onGridSizeChange: PropTypes.func,
     clearGrid: PropTypes.func,
     play: PropTypes.func,
-    stop: PropTypes.func
+    stop: PropTypes.func,
+    isPlaying: PropTypes.bool
 };
 
 module.exports = Controls;

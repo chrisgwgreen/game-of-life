@@ -60,7 +60,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "50d60be5101a9dd0091a"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "678b1b61aca05928cd14"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -24082,10 +24082,18 @@ class App extends React.Component {
     }
 
     tick() {
-        this.props.dispatch(gridActions.setGrid(GameOfLife.tick(this.props.grid)));
 
-        if (this.state.isPlaying) {
-            setTimeout(this.tick, 400);
+        let newGrid = GameOfLife.tick(this.props.grid);
+
+        if (JSON.stringify(this.props.grid) !== JSON.stringify(newGrid)) {
+
+            this.props.dispatch(gridActions.setGrid(newGrid));
+
+            if (this.state.isPlaying) {
+                setTimeout(this.tick, 400);
+            }
+        } else {
+            this.stop();
         }
     }
 
@@ -24102,10 +24110,10 @@ class App extends React.Component {
     render() {
         return React.createElement(
             'div',
-            { className: 'todo-list' },
+            { className: 'game' },
             React.createElement(Title, { title: 'Game of Life' }),
-            React.createElement(Grid, { gridSize: this.props.gridSize, grid: this.props.grid, onGridClick: this.toggleCell }),
-            React.createElement(Controls, { onGridSizeChange: this.setGridSize, play: this.play, stop: this.stop, clearGrid: this.clearGrid, isPlaying: this.state.isPlaying })
+            React.createElement(Controls, { onGridSizeChange: this.setGridSize, play: this.play, stop: this.stop, clearGrid: this.clearGrid, isPlaying: this.state.isPlaying }),
+            React.createElement(Grid, { gridSize: this.props.gridSize, grid: this.props.grid, onGridClick: this.toggleCell, isPlaying: this.state.isPlaying })
         );
     }
 }
@@ -24243,16 +24251,22 @@ class Grid extends React.Component {
         this.updateGrid = this.updateGrid.bind(this);
 
         this.state = {
-            canvasWidth: 500
+            canvasWidth: 1000
         };
     }
 
     componentDidMount() {
 
+        const canvasWidth = this.canvas.getBoundingClientRect().width - 2;
+
         this.ctx = this.canvas.getContext('2d');
-        this.ctx.canvas.width = this.state.canvasWidth;
-        this.ctx.canvas.height = this.state.canvasWidth;
+        this.ctx.canvas.width = canvasWidth;
+        this.ctx.canvas.height = canvasWidth;
         this.updateGrid();
+
+        this.setState({
+            canvasWidth
+        });
     }
 
     click(e) {
@@ -24281,7 +24295,7 @@ class Grid extends React.Component {
                 // Coloumns...
                 this.ctx.beginPath();
                 this.ctx.rect(j * cellSize, i * cellSize, cellSize, cellSize);
-                this.ctx.fillStyle = '#606c76';
+                this.ctx.fillStyle = '#dddddd';
                 this.ctx.fill();
 
                 this.ctx.beginPath();
@@ -24295,8 +24309,8 @@ class Grid extends React.Component {
     render() {
         return React.createElement(
             'div',
-            null,
-            React.createElement('canvas', { ref: canvas => this.canvas = canvas, id: 'grid', onClick: this.click })
+            { className: 'grid' },
+            React.createElement('canvas', { className: 'grid--canvas', ref: canvas => this.canvas = canvas, onClick: this.click })
         );
     }
 }
@@ -24320,7 +24334,6 @@ const PropTypes = __webpack_require__(21);
 class Controls extends React.Component {
 
     constructor(props) {
-
         super(props);
 
         this.play = this.play.bind(this);
@@ -24349,7 +24362,7 @@ class Controls extends React.Component {
 
         const listItems = [];
 
-        for (let i = 4; i <= 20; i += 1) {
+        for (let i = 4; i <= 50; i += 1) {
             listItems.push(React.createElement(
                 'option',
                 { key: i.toString(), value: i },
@@ -24359,25 +24372,25 @@ class Controls extends React.Component {
 
         return React.createElement(
             'div',
-            null,
+            { className: 'controls' },
             React.createElement(
                 'select',
-                { onChange: this.gridChange },
+                { className: 'controls--select', onChange: this.gridChange },
                 listItems
             ),
             React.createElement(
                 'button',
-                { className: 'todo-list--add', onClick: this.play },
+                { className: 'controls--button', onClick: this.play, disabled: this.props.isPlaying },
                 'Play'
             ),
             React.createElement(
                 'button',
-                { className: 'todo-list--add', onClick: this.stop },
+                { className: 'controls--button', onClick: this.stop, disabled: !this.props.isPlaying },
                 'Stop'
             ),
             React.createElement(
                 'button',
-                { className: 'todo-list--add', onClick: this.clear },
+                { className: 'controls--button', onClick: this.clear, disabled: this.props.isPlaying },
                 'Clear'
             )
         );
@@ -24389,7 +24402,8 @@ Controls.propTypes = {
     onGridSizeChange: PropTypes.func,
     clearGrid: PropTypes.func,
     play: PropTypes.func,
-    stop: PropTypes.func
+    stop: PropTypes.func,
+    isPlaying: PropTypes.bool
 };
 
 module.exports = Controls;

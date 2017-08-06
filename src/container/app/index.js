@@ -46,11 +46,21 @@ class App extends React.Component {
     }
 
     tick() {
-        this.props.dispatch(gridActions.setGrid(GameOfLife.tick(this.props.grid)));
 
-        if (this.state.isPlaying) {
-            setTimeout(this.tick, 400);
+        let newGrid = GameOfLife.tick(this.props.grid);
+
+        if (JSON.stringify(this.props.grid) !== JSON.stringify(newGrid)) {
+
+            this.props.dispatch(gridActions.setGrid(newGrid));
+
+            if (this.state.isPlaying) {
+                setTimeout(this.tick, 400);
+            }
+
+        } else {
+            this.stop();
         }
+
     }
 
     stop() {
@@ -65,10 +75,10 @@ class App extends React.Component {
 
     render() {
         return (
-            <div className='todo-list'>
+            <div className='game'>
                 <Title title={'Game of Life'} />
-                <Grid gridSize={this.props.gridSize} grid={this.props.grid} onGridClick={this.toggleCell}/>
                 <Controls onGridSizeChange={this.setGridSize} play={this.play} stop={this.stop} clearGrid={this.clearGrid} isPlaying={this.state.isPlaying}/>
+                <Grid gridSize={this.props.gridSize} grid={this.props.grid} onGridClick={this.toggleCell} isPlaying={this.state.isPlaying}/>
             </div>
         );
     }
