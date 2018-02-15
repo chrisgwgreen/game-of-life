@@ -1,12 +1,3 @@
-// Containers
-@import "container/app/app.scss";
-
-// Components
-@import "component/title/title.scss";
-@import "component/grid/grid.scss";
-@import "component/controls/controls.scss";
-
-
 html, body {
     width: 100%;
     height: 100%;
@@ -23,8 +14,7 @@ a {
   color: #00B7FF;
 }
 
-#app {
-    max-width: 600px;
-    min-width: 365px;
-    margin: 0 auto;
-}
+@import "container/app/app.scss";
+@import "component/banner/banner.scss";
+@import "component/grid/grid.scss";
+@import "component/controls/controls.scss";

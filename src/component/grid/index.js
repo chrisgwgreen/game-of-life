@@ -1,4 +1,3 @@
-// Grid
 const React = require('react');
 const PropTypes = require('prop-types');
 
@@ -17,7 +16,6 @@ class Grid extends React.Component {
 
     componentDidMount() {
 
-
         const canvasWidth = this.canvas.getBoundingClientRect().width - 2;
 
         this.ctx = this.canvas.getContext('2d');
@@ -33,13 +31,18 @@ class Grid extends React.Component {
 
     click(e) {
 
+        const {
+            gridSize,
+            onGridClick
+        } = this.props;
+
         const bounding = this.canvas.getBoundingClientRect();
-        const cellSize = this.state.canvasWidth/this.props.gridSize;
+        const cellSize = this.state.canvasWidth/gridSize;
         const xIndex = Math.floor((e.clientX - bounding.left) / cellSize);
         const yIndex = Math.floor((e.clientY - bounding.top) / cellSize);
-        const gridIndex = xIndex + (yIndex * this.props.gridSize);
+        const gridIndex = xIndex + (yIndex * gridSize);
 
-        this.props.onGridClick(gridIndex);
+        onGridClick(gridIndex);
     }
 
     componentDidUpdate() {
@@ -47,9 +50,14 @@ class Grid extends React.Component {
     }
 
     updateGrid() {
-        let canvasWidth = this.state.canvasWidth;
-        let gridSize = this.props.gridSize;
-        let cellSize = canvasWidth/gridSize;
+
+        const {
+            gridSize,
+            grid
+        } = this.props;
+
+        const canvasWidth = this.state.canvasWidth;
+        const cellSize = canvasWidth/gridSize;
 
         for(let i = 0; i < gridSize; i += 1) { // Rows...
             for(let j = 0; j < gridSize; j += 1) { // Coloumns...
@@ -60,7 +68,7 @@ class Grid extends React.Component {
 
                 this.ctx.beginPath();
                 this.ctx.rect((j * cellSize) + 2, (i * cellSize) + 2, cellSize - 4, cellSize - 4);
-                this.ctx.fillStyle = this.props.grid[(i * gridSize) + j] === 1 ? '#2b2b2b': 'white'; //
+                this.ctx.fillStyle = grid[(i * gridSize) + j] === 1 ? '#2b2b2b': 'white'; //
                 this.ctx.fill();
             }
         }

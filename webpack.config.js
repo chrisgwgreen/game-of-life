@@ -16,7 +16,6 @@ module.exports = {
         filename: 'index.js',
         path: path.resolve(__dirname, 'dist')
     },
-    // devtool: 'inline-source-map',
     module: {
         loaders: [{
             test: /\.scss$/,
@@ -28,15 +27,7 @@ module.exports = {
         }, {
             test: /\.json$/,
             loader: 'json-loader'
-        },
-        // {
-        //     test: /\.(jpe?g|png|gif|svg)$/i,
-        //     loaders: [
-        //         'file?hash=sha512&digest=hex&name=[hash].[ext]',
-        //         'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
-        //     ]
-        // }
-        ],
+        }],
         rules: [{
             test: /\.scss$/,
             use: extractSass.extract({
