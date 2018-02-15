@@ -1,4 +1,3 @@
-// controls
 const React = require('react');
 const PropTypes = require('prop-types');
 
@@ -32,19 +31,48 @@ class Controls extends React.Component {
     render() {
 
         const listItems = [];
+        const {
+            gridSize,
+            isPlaying
+        } = this.props;
 
-        for (let i = 4; i <= 50; i += 1) {
-            listItems.push(<option key={i.toString()} value={i}>{i.toString()}</option>);
+        for (let i = gridSize; i <= 30; i += 1) {
+            listItems.push(
+                <option key={i.toString()} value={i}>
+                    {i.toString()}
+                </option>
+            );
         }
 
         return (
             <div className="controls">
-                <select className="controls--select" onChange={this.gridChange}>
+                <select
+                    className="controls--select"
+                    onChange={this.gridChange}
+                >
                     {listItems}
                 </select>
-                <button className='controls--button' onClick={this.play} disabled={this.props.isPlaying}>Play</button>
-                <button className='controls--button' onClick={this.stop} disabled={!this.props.isPlaying}>Stop</button>
-                <button className='controls--button' onClick={this.clear} disabled={this.props.isPlaying}>Clear</button>
+                <button
+                    className='controls--button'
+                    onClick={this.play}
+                    disabled={isPlaying}
+                >
+                    Play
+                </button>
+                <button
+                    className='controls--button'
+                    onClick={this.stop}
+                    disabled={!isPlaying}
+                >
+                    Stop
+                </button>
+                <button
+                    className='controls--button'
+                    onClick={this.clear}
+                    disabled={isPlaying}
+                >
+                    Clear
+                </button>
             </div>
         );
     }
@@ -56,7 +84,8 @@ Controls.propTypes = {
     clearGrid: PropTypes.func,
     play: PropTypes.func,
     stop: PropTypes.func,
-    isPlaying: PropTypes.bool
+    isPlaying: PropTypes.bool,
+    gridSize: PropTypes.number
 };
 
 module.exports = Controls;

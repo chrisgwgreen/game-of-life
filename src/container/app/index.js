@@ -3,7 +3,7 @@ const PropTypes = require('prop-types');
 const GameOfLife = require('../../engine');
 
 // Components...
-const Title = require('../../component/title');
+const Banner = require('../../component/banner');
 const Grid = require('../../component/grid');
 const Controls = require('../../component/controls');
 
@@ -76,9 +76,21 @@ class App extends React.Component {
     render() {
         return (
             <div className='game'>
-                <Title title={'Game of Life'} />
-                <Controls onGridSizeChange={this.setGridSize} play={this.play} stop={this.stop} clearGrid={this.clearGrid} isPlaying={this.state.isPlaying}/>
-                <Grid gridSize={this.props.gridSize} grid={this.props.grid} onGridClick={this.toggleCell} isPlaying={this.state.isPlaying}/>
+                <Banner />
+                <Controls
+                    onGridSizeChange={this.setGridSize}
+                    play={this.play}
+                    stop={this.stop}
+                    clearGrid={this.clearGrid}
+                    isPlaying={this.state.isPlaying}
+                    gridSize={this.props.gridSize}
+                />
+                <Grid
+                    gridSize={this.props.gridSize}
+                    grid={this.props.grid}
+                    onGridClick={this.toggleCell}
+                    isPlaying={this.state.isPlaying}
+                />
             </div>
         );
     }
